@@ -6,6 +6,10 @@ from KKT_Module.SettingProcess.SettingProccess import SettingProc, ConnectDevice
 from KKT_Module.DataReceive.DataReciever import RawDataReceiver, HWResultReceiver, FeatureMapReceiver
 import time
 
+# 測試版子的輸入有沒有問題
+def test_input(num):
+    print(num + 1)
+    
 # 連接毫米波AI裝置
 def connect():
     connect = ConnectDevice()
@@ -39,12 +43,15 @@ def startLoop():
         res = R.getResults()                # Get data from receiver
         if res is None:
             continue
-        print('data = {}'.format(res))          # Print results
-        # time.sleep(0.05)
+        else:
+            print('data = {}'.format(res))          # Print results
+            test_input(1)
+        
+        time.sleep(0.1)
         '''
         Main program in here. example:
         '''
-        
+            
 # 啟動程式 ->載入上面所寫的function
 def main():
     kgl.setLib()
