@@ -11,7 +11,6 @@ frame_total = 190
 window_size = 12
 hop_length = 1
 
-
 cnt = 0
 for file in dirs:
     cnt += 1
@@ -37,7 +36,7 @@ for file in dirs:
 
     print(X.shape)
     pickle.dump(
-        X, open("./Data//PropreccessedData//X_save_"+str(cnt)+".save", 'wb'))
+        X, open("./Data//PropreccessedData//X//X_save_"+str(cnt)+".save", 'wb'))
 
     print("Split label")
     Y = np.array(None)
@@ -61,6 +60,6 @@ for file in dirs:
 
     print(Y.shape)
     pickle.dump(
-        Y, open("./Data//PropreccessedData//Y_save_"+str(cnt)+".save", 'wb'))
+        Y, open("./Data//PropreccessedData//Y//Y_save_"+str(cnt)+".save", 'wb'))
 
     f.close
