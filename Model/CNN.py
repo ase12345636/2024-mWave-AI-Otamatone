@@ -5,7 +5,7 @@ import keras
 class CNN(keras.Model):
     def __init__(self):
         super(CNN, self).__init__()
-        self.conv1 = layers.Conv2D(filters=64, kernel_size=(7, 7),
+        self.conv1 = layers.Conv2D(input_shape=[64, 32, 12], filters=64, kernel_size=(7, 7),
                                    activation="relu", padding="same")
         self.pool1 = layers.MaxPooling2D(pool_size=(2, 2), padding="same")
 
@@ -23,7 +23,7 @@ class CNN(keras.Model):
         self.dense1 = layers.Dense(128, activation="relu")
         self.dropout = layers.Dropout(0.5)
 
-        self.dense2 = layers.Dense(2, activation="softmax")
+        self.dense2 = layers.Dense(10, activation="softmax")
 
     def call(self, x):
         x = self.conv1(x)
