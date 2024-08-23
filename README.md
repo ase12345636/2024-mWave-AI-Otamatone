@@ -16,14 +16,24 @@ Otamatone是一種外型類似八分音符的電子樂器，其結構分為尾�
 最後藉由pygame這個模組來呼叫windows的合成器來發出聲音，並使用GUI介面來調整我們所想要發出的音色。
 ![alt text](images/image-1.png)
 
-## Dataset
-### Data Collect
+## 資料集
+### 資料收集
 透過官方提供的Collect_RDI軟體裡面的pre define的mode，設定固定frame是動作標記，並設定10個frames為固定間隔，由於硬體效能的限制導致資料前處理過久，所以總共收集的frame數量僅為190個，且為經過Fourier Transform後的資料。
 
-### Data Preprocess
+### 資料前處理
+原始資料共有190個frames並有多個label分別如下:0 1 0 2 0 3 0 4 0 5 0 6 0 7 0 8 0 9 0，label 0 表示沒有動作；label 1~7 由低到高分別為Do Re Mi Fa So La Si；label 8代表聲音上調；label 9代表聲音下調。
+
+為了後續訓練分辨，所以需要把各個label的資料從單一資料分割出來，我們使用移動window的方式一個一個去掃描切割，window size 設為12，只有window目前開頭為有標記label的開頭，才標記為該label，其他的則視為label 0，為避免資料產生極大的偏態，所以訓練時只有隨機選取與其他label一樣量的label 0。
+
+### 資料分割
+我們合計收集307筆的資料，作為我們資料集，每筆資料裡面都有10種label，並將其切成三份作為training set、validation set、test set，其中192筆為training set，占全部的64%；49筆為validation set，占全部的16%；62筆為test set，占全部的20%。
+
+## 簡介
+### 所需的模組
+請參考KKT_Module/requirements.txt。
+
+### 程式執行
+執行MP.py 即可出現GUI介面。
 
 
-### Data Split
 
-
-## Instruction
